@@ -1,18 +1,18 @@
 #include <Arduino.h>
 
-const int pin = 14;
-
+#define DAC2 26 
 
 void setup() {
-  Serial.begin(921600);
-  delay(1000);
 }
 
 void loop() {
-  int LRD_val = analogRead(pin);
-  if(LRD_val != 0){
-    Serial.println(LRD_val);
+  for (int i = 0; i < 256; i++) { 
+    dacWrite(DAC2, i);
+    delay(100);
   }
-  delay(1000);
-
+  
+  for (int i = 255; i > -1; i--) {
+    dacWrite(DAC2, i);
+    delay(100);
+  }
 }
